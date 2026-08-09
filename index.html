@@ -339,19 +339,57 @@
             border-color: var(--primary);
         }
 
+        /* Project Image - Updated for real images */
         .project-image {
             height: 200px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        /* Gradient overlay for better text readability */
         .project-image::after {
             content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, var(--card), transparent);
+            z-index: 1;
+        }
+
+        /* Icon styling - shows when image fails to load */
+        .project-image .icon-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            font-size: 3rem;
+            opacity: 0.9;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: opacity 0.3s;
+        }
+
+        /* Hide icon when image is loaded */
+        .project-image img:not([src=""]):not([src="#"]) ~ .icon-overlay {
+            opacity: 0;
+        }
+
+        /* Shine effect */
+        .shine-effect {
             position: absolute;
             top: -50%;
             left: -50%;
@@ -360,9 +398,11 @@
             background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
             transform: rotate(45deg);
             transition: all 0.5s;
+            z-index: 3;
+            pointer-events: none;
         }
 
-        .project-card:hover .project-image::after {
+        .project-card:hover .shine-effect {
             animation: shine 0.5s;
         }
 
@@ -581,7 +621,6 @@
             }
         }
     </style>
-<base target="_blank">
 </head>
 <body>
     <canvas id="particles-canvas"></canvas>
@@ -642,9 +681,16 @@
             <p>مجموعة من المشاريع التي قمت بتطويرها باستخدام تقنيات متنوعة</p>
         </div>
         <div class="projects-grid">
+
+            <!-- Project 1: Cooking Website -->
             <div class="project-card fade-in">
                 <div class="project-image">
-                    <i class="fas fa-utensils"></i>
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop" 
+                         alt="Cooking Website" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fas fa-utensils icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -654,15 +700,23 @@
                     <h3 class="project-title">Cooking Website</h3>
                     <p class="project-desc">موقع طبخ تفاعلي يحتوي على وصفات متنوعة مع تصميم عصري وجذاب</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/cooking_website" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/cooking_website" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 2: Appyallavamos -->
             <div class="project-card fade-in">
                 <div class="project-image" style="background: linear-gradient(135deg, #3776ab, #ffd43b);">
-                    <i class="fab fa-python"></i>
+                    <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&h=400&fit=crop" 
+                         alt="Appyallavamos" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fab fa-python icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -671,15 +725,23 @@
                     <h3 class="project-title">Appyallavamos</h3>
                     <p class="project-desc">تطبيق Python متكامل مع ميزات متقدمة وواجهة مستخدم سهلة الاستخدام</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/appyallavamos" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/appyallavamos" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 3: Perfume Store -->
             <div class="project-card fade-in">
                 <div class="project-image" style="background: linear-gradient(135deg, #f0db4f, #323330);">
-                    <i class="fas fa-shopping-bag"></i>
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&h=400&fit=crop" 
+                         alt="Perfume Store" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fas fa-shopping-bag icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -688,15 +750,23 @@
                     <h3 class="project-title">Perfume Store</h3>
                     <p class="project-desc">متجر عطور إلكتروني مع سلة تسوق ونظام دفع تفاعلي</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/PerfumeStore" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/PerfumeStore" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 4: Snake App -->
             <div class="project-card fade-in">
                 <div class="project-image" style="background: linear-gradient(135deg, #00599c, #004482);">
-                    <i class="fas fa-gamepad"></i>
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop" 
+                         alt="Snake App" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fas fa-gamepad icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -705,15 +775,23 @@
                     <h3 class="project-title">Snake App</h3>
                     <p class="project-desc">لعبة الثعبان الكلاسيكية مبرمجة بلغة C++ مع رسوميات متقدمة</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/SnakeApp" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/SnakeApp" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 5: Soudor Full Site -->
             <div class="project-card fade-in">
                 <div class="project-image" style="background: linear-gradient(135deg, #e34c26, #f06529);">
-                    <i class="fas fa-globe"></i>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" 
+                         alt="Soudor Full Site" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fas fa-globe icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -723,15 +801,23 @@
                     <h3 class="project-title">Soudor Full Site</h3>
                     <p class="project-desc">موقع ويب كامل بتصميم احترافي ومتجاوب مع جميع الأجهزة</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/soudor_full_site" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/soudor_full_site" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 6: Color Screen -->
             <div class="project-card fade-in">
                 <div class="project-image" style="background: linear-gradient(135deg, #00b4d8, #0077b6);">
-                    <i class="fas fa-mobile-alt"></i>
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop" 
+                         alt="Color Screen" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fas fa-mobile-alt icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -741,15 +827,23 @@
                     <h3 class="project-title">Color Screen</h3>
                     <p class="project-desc">تطبيق Flutter لإنشاء شاشات ملونة مع ميزات تخصيص متقدمة</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/Color_Screen" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/Color_Screen" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 7: Tic Tac Toe Kotlin -->
             <div class="project-card fade-in">
                 <div class="project-image" style="background: linear-gradient(135deg, #7f52ff, #e2445c);">
-                    <i class="fas fa-times"></i>
+                    <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=600&h=400&fit=crop" 
+                         alt="Tic Tac Toe Kotlin" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fas fa-times icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -758,15 +852,23 @@
                     <h3 class="project-title">Tic Tac Toe Kotlin</h3>
                     <p class="project-desc">لعبة إكس أو تفاعلية مبرمجة بلغة Kotlin لتطبيقات Android</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/TicTacToeKotlin" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/TicTacToeKotlin" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 8: Calculatris App -->
             <div class="project-card fade-in">
                 <div class="project-image" style="background: linear-gradient(135deg, #7f52ff, #0095d5);">
-                    <i class="fas fa-calculator"></i>
+                    <img src="https://images.unsplash.com/photo-1587145820266-a5951eebe0c2?w=600&h=400&fit=crop" 
+                         alt="Calculatris App" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fas fa-calculator icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -775,15 +877,23 @@
                     <h3 class="project-title">Calculatris App</h3>
                     <p class="project-desc">آلة حاسبة علمية متقدمة بتصميم عصري لمستخدمي Android</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/CalculatrisApp" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/CalculatrisApp" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 9: Probable Train -->
             <div class="project-card fade-in">
                 <div class="project-image" style="background: linear-gradient(135deg, #00599c, #00b4d8);">
-                    <i class="fas fa-train"></i>
+                    <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&h=400&fit=crop" 
+                         alt="Probable Train" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fas fa-train icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -792,15 +902,23 @@
                     <h3 class="project-title">Probable Train</h3>
                     <p class="project-desc">محاكاة نظام قطارات متقدمة بلغة C++ مع خوارزميات ذكية</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/probable-train" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/probable-train" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 10: Happy Farm -->
             <div class="project-card fade-in">
                 <div class="project-image" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
-                    <i class="fas fa-tractor"></i>
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop" 
+                         alt="Happy Farm" 
+                         loading="lazy"
+                         onerror="this.style.display='none'">
+                    <div class="shine-effect"></div>
+                    <i class="fas fa-tractor icon-overlay"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -809,11 +927,14 @@
                     <h3 class="project-title">Happy Farm</h3>
                     <p class="project-desc">لعبة مزرعة سعيدة تفاعلية مع رسوميات جذابة وميكانيكية متقدمة</p>
                     <div class="project-links">
-                        <a href="https://github.com/Allallahlou/happy_farm" target="_blank"><i class="fab fa-github"></i> الكود</a>
+                        <a href="https://github.com/Allallahlou/happy_farm" target="_blank">
+                            <i class="fab fa-github"></i> الكود
+                        </a>
                         <a href="#"><i class="fas fa-external-link-alt"></i> المعاينة</a>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
